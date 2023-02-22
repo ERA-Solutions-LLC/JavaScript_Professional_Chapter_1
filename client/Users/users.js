@@ -1,46 +1,62 @@
-// mock api url
-const api_uri = "https://jsonplaceholder.typicode.com/users/";
+  const card = document.getElementById('users-list');
+  const list = document.createDocumentFragment();
+  const api_url = 'https://jsonplaceholder.typicode.com/users';
 
-// Defining async function to get data from aoi url
-async function getApi(uri) {
-
-    // Storing response from api
-    const response = await fetch(uri);
-
-    // Storing data in json format
-    let data = await response.json();
-    console.log(data);
-    if (response) {
+  
+  async function getApi(url) {
+   await fetch(url)
+    .then((response) => {
+      if(response) {
         hideLoader();
-    }
-    show(data);
-}
+        return response.json();
+      }
+      
+      
+    })
+    .then((data) => {
+      let users = data;
 
-// Invoking async function
-console.log(getApi(api_uri))
-getApi(api_uri);
+      users.forEach(function(user) {
+        let userCard = document.createElement('section');
+        let name = document.createElement('h2');
+        let email = document.createElement('p');
+        let company = document.createElement('p');
+        let catchPhrase = document.createElement('p');
 
-// Function to hide loader
-let hideLoader = () => { 
-    document.getElementById('loading').style.display = 'none';
-}
+        name.textContent = `Name: ${user.name}`;
+        email.textContent = `Email: ${user.email}`;
+        company.textContent = `Company: ${user.company.name}`;
+        catchPhrase.textContent = `Catch phrase: ${user.company.catchPhrase}`
 
-function show(data) {
-    let card =
-    `
-        <h2 class="card-title">Name</h2>
-        <p class="card-text">Email</p>
-        <p class="card-text">Company Name</p>
-        <p class="card-text">Catch phrase</p>
-    `;
-    for ( let i of data.users) {
-        card += 
-        `
-            <h2>${i.name}</h2>
-            <p>${i.email}</p>
-            <p>${i.company.name}</p>
-            <p>${i.company.catchPhrase}</p>
-        `;
-    }
-    document.getElementById("users").innerHTML = card
-}
+        userCard.id = 'users';
+        userCard.classList.add('card')
+        
+
+        userCard.appendChild(name);
+        name.classList.add('card-title');
+        userCard.appendChild(email);
+        email.classList.add('card-text');
+        userCard.appendChild(company);
+        email.classList.add('card-text');
+        userCard.appendChild(catchPhrase);
+        email.classList.add('card-text');
+        list.appendChild(userCard);
+        
+        userCard.style.width = '50vw'
+        userCard.style.margin = 'auto'
+        userCard.style.marginTop = '15%'
+        userCard.style.padding = '2%'
+        
+      });
+      console.log(card)
+      card.appendChild(list);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  }
+  getApi(api_url)
+  
+    let hideLoader = () => { 
+      document.getElementById('loading').style.display = 'none';
+  }
