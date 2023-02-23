@@ -1,1 +1,10 @@
 node_modules
+login/login.min.html
+login/login.min.js
+signUp/signup.min.html
+signUp/signup.min.js
+Users/users.min.html
+Users/users.min.js
+client/index.min.html
+client/index.min.js
+client/styles.min.css
