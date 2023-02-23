@@ -16,5 +16,13 @@ function handleSignUp(e) {
 
   localStorage.setItem('user', JSON.stringify({ fullName, companyName, email, password }));
   alert('Sign up successful!');
-  setTimeout(window.location.href = '../index.html', 2000);
+  window.location.href = '../index.html';
+}
+
+let protectedRoute = () => {
+  if (localStorage.getItem('isLoggedIn') === 'true') {
+      window.location.href = '../index.html'
+  } else {
+      window.location.href = '../login/login.html'
+  }       
 }

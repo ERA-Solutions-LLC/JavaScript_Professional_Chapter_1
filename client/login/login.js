@@ -11,11 +11,26 @@ let handleLogin = (e) => {
     const password = document.getElementById('password').value;
     const checkBox = document.getElementById('check').value;
 
-    if (email === 'myusername' && password === 'mypassword' && checkBox === true)  {
-        localStorage.setItem('email', JSON.stringify({ email }));
+    if (email === 'myemail@e.com' && password === 'mypassword' && checkBox === true && isLoggedIn === false) {  
+        localStorage.setItem('email', JSON.stringify({ email }), 'isLoggedIn', true, );
         alert('Login successful!');
-        setTimeout(window.location.href = '../index.html', 2000);
+        window.location.href = '../index.html'
+    } 
+    else if (email === 'myemail@e.com' && password === 'mypassword' && checkBox === false && isLoggedIn === false) {
+        localStorage.setItem(isLoggedIn === true)
+        alert('Login successful!');
+        window.location.href = '../index.html';
     } else {
         alert('Invalid email or password');
     }
+}
+
+console.log(form)
+
+let protectedRoute = () => {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+        window.location.href = '../index.html'
+    } else {
+        window.location.href = './login.html'
+    }       
 }
