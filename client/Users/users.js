@@ -22,11 +22,13 @@
         let email = document.createElement('p');
         let company = document.createElement('p');
         let catchPhrase = document.createElement('p');
+        let password = document.createElement('p');
 
         name.textContent = `Name: ${user.name}`;
         email.textContent = `Email: ${user.email}`;
         company.textContent = `Company: ${user.company.name}`;
         catchPhrase.textContent = `Catch phrase: ${user.company.catchPhrase}`
+        password.textContent = `Password: ${user.password}`;
 
         userCard.id = 'users';
         userCard.classList.add('card')
@@ -40,12 +42,16 @@
         email.classList.add('card-text');
         userCard.appendChild(catchPhrase);
         email.classList.add('card-text');
+        userCard.appendChild(password);
+        password.classList.add('card-text');
+        
         list.appendChild(userCard);
         
         userCard.style.width = '50vw'
         userCard.style.margin = 'auto'
         userCard.style.marginTop = '15%'
         userCard.style.padding = '2%'
+        
         
       });
       console.log(card)
@@ -60,3 +66,5 @@
     let hideLoader = () => { 
       document.getElementById('loading').style.display = 'none';
   }
+
+
